@@ -5,11 +5,11 @@ import { TodoError } from "@/components/todos/TodoError";
 import { TodoList } from "@/components/todos/TodoList";
 import { ServiceClient } from "@/services/generated/client-todos";
 import { Error, TodoID, Todos } from "@/services/generated/vo-todos";
-import { getClient } from "@/services/transport";
+import { getClientWithTransportLog } from "@/services/transportWithLog";
 
 import { useEffect, useState } from "react";
 
-const client = getClient(ServiceClient);
+const client = getClientWithTransportLog(ServiceClient);
 
 type TodoReturnType = {
   todos: Todos | null;
@@ -69,7 +69,10 @@ const Todos = () => {
             all responses are slowed down by a server side sleep of 1s - to
             illustrate the request / response lifecycle
           </li>
-          <li>you can trigger a <code>500 server error</code> by entering <q>500</q> as a todo</li>
+          <li>
+            you can trigger a <code>500 server error</code> by entering{" "}
+            <q>500</q> as a todo
+          </li>
           <li>
             submitting an empty todo will trigger an <code>ErrCreateEmpty</code>
           </li>

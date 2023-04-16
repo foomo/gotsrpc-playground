@@ -51,9 +51,9 @@ export default function App(props: AppProps) {
             })}
           </ul>
         </nav>
-        <h2>{currentLabel}</h2>          
+        <h2>{currentLabel}</h2>
         <Component {...pageProps} />
-        <TransportLog />
+        {currentPage !== "hello-world" && <TransportLog />}
       </main>
     </>
   );

@@ -1,6 +1,7 @@
 import { DocsAside } from "@/components/DocsAside";
 import { ServiceClient } from "@/services/generated/client-playground";
 import { getClient } from "@/services/transport";
+import { getClientWithTransportLog } from "@/services/transportWithLog";
 import classes from "@/styles/Playground.module.css";
 import { useEffect, useState } from "react";
 
@@ -15,7 +16,7 @@ server/
   server/server/plaground.go - your service implemetation
 `;
 
-const client = getClient(ServiceClient);
+const client = getClientWithTransportLog(ServiceClient);
 
 const Playground = () => {
   const [callToAction, setCallToAction] = useState(

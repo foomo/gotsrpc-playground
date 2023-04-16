@@ -1,4 +1,4 @@
-import { LogEntry, useTransportLogStore } from "@/services/transport";
+import { LogEntry, useTransportLogStore } from "@/services/transportWithLog";
 import classes from "@/styles/Components.module.css";
 import { JsonViewer } from "@textea/json-viewer";
 import { differenceInMilliseconds, format } from "date-fns";

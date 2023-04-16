@@ -3,10 +3,10 @@ import { Trip } from "@/components/wof/Trip";
 import { Pet } from "@/components/wof/Pet";
 import { ServiceClient } from "@/services/generated/client-wof";
 
-import { getClient, useTransportLogStore } from "@/services/transport";
 import classes from "@/styles/Wof.module.css";
 import { useState } from "react";
 import { Price } from "@/services/generated/vo-wof";
+import { getClientWithTransportLog, useTransportLogStore } from "@/services/transportWithLog";
 
 const NoPriceComp = () => {
   return <div>No Price</div>;
@@ -27,7 +27,7 @@ const getComponentForPrice = (
   }
 };
 
-const client = getClient(ServiceClient);
+const client = getClientWithTransportLog(ServiceClient);
 
 const WheelOfFortune = () => {
   const numRunningCalls = useTransportLogStore(
