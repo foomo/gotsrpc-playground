@@ -1,0 +1,43 @@
+targets:
+
+  helloworld:
+    services:
+      /services/helloworld: Service
+    package: github.com/foomo/gotsrpc-playground/server/services/helloworld
+    out: client/services/generated/client-helloworld.ts
+    tsrpc:
+      - Service
+
+  todos:
+    services:
+      /services/todos: Service
+    package: github.com/foomo/gotsrpc-playground/server/services/todos
+    out: client/services/generated/client-todos.ts
+    tsrpc:
+      - Service
+
+  wheeloffortune:
+    services:
+      /services/wof: Service
+    package: github.com/foomo/gotsrpc-playground/server/services/wof
+    out: client/services/generated/client-wof.ts
+    tsrpc:
+      - Service
+
+  playground:
+    services:
+      /services/playground: Service
+    package: github.com/foomo/gotsrpc-playground/server/services/playground
+    out: client/services/generated/client-playground.ts
+    tsrpc:
+      - Service
+
+mappings:
+  github.com/foomo/gotsrpc-playground/server/services/todos:
+    out: client/services/generated/vo-todos.ts
+  github.com/foomo/gotsrpc-playground/server/services/wof:
+    out: client/services/generated/vo-wof.ts
+  github.com/foomo/gotsrpc-playground/server/services/playground:
+    out: client/services/generated/vo-playground.ts
+  time:
+    out: client/services/generated/vo-time.ts

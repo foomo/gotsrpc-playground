@@ -1,0 +1,57 @@
+.transportLog {
+  filter: drop-shadow(0 -0.5rem 0.5rem rgba(0, 0, 0, 0.3));
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background-color: white;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.transportLogHeader {
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+.transportLogTableWrapper {
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.transportLogTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.transportLogTable td {
+  padding: 0.5rem;
+  border: 1px solid black;
+  vertical-align: top;
+}
+
+.transportLogTableHeaderRowContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.transportLogTableHeaderRowContent code {
+  color: red;
+}
+
+.transportLogTableHeaderRowOdd {
+  background-color: rgb(241, 241, 241);
+}
+
+.transportError {
+  color: white;
+  font-weight: bolder;
+
+  margin: 1rem 0;
+  width: auto;
+  padding: 1rem;
+  background-color: red;
+}
