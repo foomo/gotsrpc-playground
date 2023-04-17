@@ -1,5 +1,20 @@
+# build targets define for which interfaces code will be generated in a package
 targets:
 
+  # the key of a target is arbitrary and solely serves readability
+  todos:
+    # map of service path => interface ie which service will be exposed on 
+    # which path
+    services:
+      /services/todos: Service
+    # go package
+    package: github.com/foomo/gotsrpc-playground/server/services/todos
+    # target file for TypeScript client generation
+    out: client/services/generated/client-todos.ts
+    # which services should be generated in the (go)TypeScript RPC flavor
+    tsrpc:
+      - Service
+      
   helloworld:
     services:
       /services/helloworld: Service
@@ -8,13 +23,6 @@ targets:
     tsrpc:
       - Service
 
-  todos:
-    services:
-      /services/todos: Service
-    package: github.com/foomo/gotsrpc-playground/server/services/todos
-    out: client/services/generated/client-todos.ts
-    tsrpc:
-      - Service
 
   wheeloffortune:
     services:
@@ -32,6 +40,7 @@ targets:
     tsrpc:
       - Service
 
+# mappings of go packages to typescript files
 mappings:
   github.com/foomo/gotsrpc-playground/server/services/todos:
     out: client/services/generated/vo-todos.ts
