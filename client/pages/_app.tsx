@@ -53,7 +53,7 @@ export default function App(props: AppProps) {
         </nav>
         <h2>{currentLabel}</h2>
         <Component {...pageProps} />
-        {currentPage !== "hello-world" && <TransportLog />}
+        {["/", "hello-world"].indexOf(currentPage) === -1 && <TransportLog />}
       </main>
     </>
   );

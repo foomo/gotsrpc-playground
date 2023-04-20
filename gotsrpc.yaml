@@ -46,7 +46,5 @@ mappings:
     out: client/services/generated/vo-todos.ts
   github.com/foomo/gotsrpc-playground/server/services/wof:
     out: client/services/generated/vo-wof.ts
-  github.com/foomo/gotsrpc-playground/server/services/playground:
-    out: client/services/generated/vo-playground.ts
   time:
     out: client/services/generated/vo-time.ts

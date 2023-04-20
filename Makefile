@@ -1,6 +1,8 @@
 
+clean:
+	rm -vf client/services/generated/vo-*.ts client/services/generated/client-*.ts server/services/*/*_gen.go
 
-gotsrpc:
+gotsrpc: clean
 	gotsrpc gotsrpc.yaml
 
 run-client:

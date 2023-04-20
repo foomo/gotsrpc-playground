@@ -35,7 +35,7 @@ const Playground = () => {
         </code>
         <p>
           Find instructions on running the playground in the{" "}
-          <a href="https://github.com/foomo/gotsrpc-playground/README.md">README.md</a>{" "}
+          <a href="https://github.com/foomo/gotsrpc-playground/#readme">README.md</a>{" "}
           of the project
         </p>
       </DocsAside>

@@ -37,7 +37,7 @@ func (s *wofService) Spin() wof.Price {
 				Kind:  "Car",
 				Brand: "gocart",
 				Model: "1.20",
-				Seats: 1,
+				Seats: wof.TwoSeats,
 				Power: runtime.NumCPU(),
 			},
 		}
@@ -48,7 +48,7 @@ func (s *wofService) Spin() wof.Price {
 			Pet: &wof.Pet{
 				Kind:    "Pet",
 				Name:    "James",
-				Species: "cat",
+				Species: wof.Cat,
 			},
 		}
 	}
