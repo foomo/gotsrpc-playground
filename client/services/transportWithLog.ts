@@ -5,11 +5,11 @@ import { ServiceConstructor } from "./transport";
 export type LogEntry = {
   requestID: string;
   expanded?: boolean;
-  start:Date;
-  end?:Date;
+  start: Date;
+  end?: Date;
   request?: { url: string; args: Array<any> };
   response?: { values: Array<any> | null };
-  transportError?:string;
+  transportError?: string;
 };
 
 export type Log = Array<LogEntry>;
@@ -17,38 +17,42 @@ export type RequestLogger = (
   requestID: string,
   url: string,
   args: Array<any>
-  ) => void;
-  export type ResponseLogger = (requestID: string, vals: Array<any> | null, transportError?:string) => void;
-  
-  interface TransportLogState {
-    log: Log;
-    logRequest: RequestLogger;
-    logResponse: ResponseLogger;
-    toggle: (requestID:string) => void;
-    clear: () => void;
-    numRunningCalls:number;
+) => void;
+export type ResponseLogger = (
+  requestID: string,
+  vals: Array<any> | null,
+  transportError?: string
+) => void;
+
+interface TransportLogState {
+  log: Log;
+  logRequest: RequestLogger;
+  logResponse: ResponseLogger;
+  toggle: (requestID: string) => void;
+  clear: () => void;
+  numRunningCalls: number;
 }
 
 const transportLogStore = createStore<TransportLogState>()((set) => ({
   log: [],
-  numRunningCalls:0,
+  numRunningCalls: 0,
   clear: () => {
-    set({log:[]})
+    set({ log: [] });
   },
-  toggle: (requestID:string) => {
+  toggle: (requestID: string) => {
     set((state) => {
       const newLog = [...state.log];
-      for(let i = 0;i<newLog.length;i++) {
+      for (let i = 0; i < newLog.length; i++) {
         const current = newLog[i];
-        if(current.requestID == requestID) {
+        if (current.requestID == requestID) {
           newLog[i] = {
             ...current,
             expanded: !current.expanded,
-          }
+          };
         }
       }
-      return {log:newLog};
-    })
+      return { log: newLog };
+    });
   },
   logRequest: (requestID: string, url: string, args: Array<any>) =>
     set((state) => {
@@ -56,7 +60,7 @@ const transportLogStore = createStore<TransportLogState>()((set) => ({
         {
           requestID,
           start: new Date(),
-          expanded:false,
+          expanded: false,
           request: {
             args,
             url,
@@ -64,9 +68,13 @@ const transportLogStore = createStore<TransportLogState>()((set) => ({
         },
         ...state.log,
       ];
-      return { log: newLog, numRunningCalls: state.numRunningCalls+1 };
+      return { log: newLog, numRunningCalls: state.numRunningCalls + 1 };
     }),
-  logResponse: (requestID: string, values: Array<any> | null, transportError?:string) =>
+  logResponse: (
+    requestID: string,
+    values: Array<any> | null,
+    transportError?: string
+  ) =>
     set((state) => {
       const newLog: Array<LogEntry> = [...state.log];
       for (let i = 0; i < newLog.length; i++) {
@@ -80,12 +88,13 @@ const transportLogStore = createStore<TransportLogState>()((set) => ({
           break;
         }
       }
-      return { log: newLog, numRunningCalls: state.numRunningCalls-1 };
+      return { log: newLog, numRunningCalls: state.numRunningCalls - 1 };
     }),
 }));
 
-export const useTransportLogStore = (selector:(state:TransportLogState) => any) =>
-  useStore(transportLogStore, selector);
+export const useTransportLogStore = (
+  selector: (state: TransportLogState) => any
+) => useStore(transportLogStore, selector);
 
 let i = 0;
 
@@ -108,14 +117,15 @@ const transportWithLog =
           transportLogStore.getState().logResponse(requestID, [val]);
           resolve(val);
         })
-        .catch((err) => { 
+        .catch((err) => {
           transportLogStore.getState().logResponse(requestID, null, err + "");
-          reject(err) 
+          reject(err);
         });
     });
   };
 
-
-export const getClientWithTransportLog = <T>(clientClass: ServiceConstructor<T>) => {
+export const getClientWithTransportLog = <T>(
+  clientClass: ServiceConstructor<T>
+) => {
   return new clientClass(transportWithLog(clientClass.defaultEndpoint));
 };
