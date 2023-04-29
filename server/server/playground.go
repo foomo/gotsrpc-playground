@@ -1,6 +1,10 @@
 package server
 
-import "github.com/foomo/gotsrpc-playground/server/services/playground"
+import (
+	"time"
+
+	"github.com/foomo/gotsrpc-playground/server/services/playground"
+)
 
 type playgroundService struct {
 }
@@ -10,6 +14,9 @@ func NewPlayground() playground.Service {
 
 }
 
-func (s *playgroundService) ImplementMe() string {
-	return "Implement me, change me, have fun ..."
+func (s *playgroundService) ImplementMe() playground.Greeting {
+	return playground.Greeting{
+		Text: "Starting breaking things here 😎",
+		Time: time.Now(),
+	}
 }

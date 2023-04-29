@@ -11,7 +11,7 @@ import (
 )
 
 type ServiceGoTSRPCClient interface {
-	ImplementMe(ctx go_context.Context) (retImplementMe_0 string, clientErr error)
+	ImplementMe(ctx go_context.Context) (retImplementMe_0 Greeting, clientErr error)
 }
 
 type HTTPServiceGoTSRPCClient struct {
@@ -35,7 +35,7 @@ func NewServiceGoTSRPCClientWithClient(url string, endpoint string, client *go_n
 		Client:   gotsrpc.NewClientWithHttpClient(client),
 	}
 }
-func (tsc *HTTPServiceGoTSRPCClient) ImplementMe(ctx go_context.Context) (retImplementMe_0 string, clientErr error) {
+func (tsc *HTTPServiceGoTSRPCClient) ImplementMe(ctx go_context.Context) (retImplementMe_0 Greeting, clientErr error) {
 	args := []interface{}{}
 	reply := []interface{}{&retImplementMe_0}
 	clientErr = tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "ImplementMe", args, reply)
