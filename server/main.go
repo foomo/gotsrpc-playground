@@ -12,6 +12,7 @@ import (
 
 	"github.com/foomo/gotsrpc-playground/server/server"
 	"github.com/foomo/gotsrpc-playground/server/services/helloworld"
+	"github.com/foomo/gotsrpc-playground/server/services/ouch"
 	"github.com/foomo/gotsrpc-playground/server/services/playground"
 	"github.com/foomo/gotsrpc-playground/server/services/todos"
 	"github.com/foomo/gotsrpc-playground/server/services/wof"
@@ -38,6 +39,7 @@ func main() {
 	proxyTodos := todos.NewDefaultServiceGoTSRPCProxy(server.NewTodos())
 	proxyWof := wof.NewDefaultServiceGoTSRPCProxy(server.NewWof())
 	proxyPlayground := playground.NewDefaultServiceGoTSRPCProxy(server.NewPlayground())
+	proxyOuch := ouch.NewDefaultServiceGoTSRPCProxy(server.NewOuch())
 
 	// in order to keep the service implementations trivial,
 	// I am taking concurrency out of the equation
@@ -53,6 +55,8 @@ func main() {
 
 			// delegate calls to the respective gotsrpc service proxies
 			switch true {
+			case strings.HasPrefix(r.URL.Path, "/services/ouch"):
+				proxyOuch.ServeHTTP(w, r)
 			case strings.HasPrefix(r.URL.Path, "/services/wof"):
 				proxyWof.ServeHTTP(w, r)
 			case strings.HasPrefix(r.URL.Path, "/services/helloworld"):

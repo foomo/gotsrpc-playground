@@ -33,6 +33,7 @@ export default function App(props: AppProps) {
               { page: "/", label: "Home" },
               { page: "hello-world", label: "Hello, World!" },
               { page: "wheel-of-fortune", label: "Wheel of Fortune" },
+              { page: "ouch", label: "What could go wrong?" },
               { page: "todos", label: "Todos" },
               { page: "playground", label: "Your playground" },
             ].map((ne) => {

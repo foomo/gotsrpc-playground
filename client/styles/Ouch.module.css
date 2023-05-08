@@ -1,0 +1,17 @@
+.errorBad {
+    color: white;
+    font-weight: bolder;
+    margin: 1rem 0;
+    width: auto;
+    padding: 1rem;
+    background-color: red;
+}
+
+.errorAwful {
+    color: white;
+    font-weight: bolder;
+    margin: 1rem 0;
+    width: auto;
+    padding: 1rem;
+    background-color: magenta;
+}

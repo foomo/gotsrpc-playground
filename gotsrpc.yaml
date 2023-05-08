@@ -40,6 +40,14 @@ targets:
     tsrpc:
       - Service
 
+  ouch:
+    services:
+      /services/ouch: Service
+    package: github.com/foomo/gotsrpc-playground/server/services/ouch
+    out: client/services/generated/client-ouch.ts
+    tsrpc:
+      - Service
+
 # mappings of go packages to typescript files
 mappings:
   github.com/foomo/gotsrpc-playground/server/services/todos:
@@ -48,5 +56,7 @@ mappings:
     out: client/services/generated/vo-wof.ts
   github.com/foomo/gotsrpc-playground/server/services/playground:
     out: client/services/generated/vo-playground.ts
+  github.com/foomo/gotsrpc-playground/server/services/ouch:
+    out: client/services/generated/vo-ouch.ts
   time:
     out: client/services/generated/vo-time.ts
