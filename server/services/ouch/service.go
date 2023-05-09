@@ -24,6 +24,7 @@ func (ae *AwfulError) Error() string {
 	return "this is simply awful"
 }
 
+// Ouch error is a union error type example
 type OuchError struct {
 	Awful *AwfulError `json:"awful,omitempty" gotsrpc:"union"`
 	Bad   *BadError   `json:"bad,omitempty" gotsrpc:"union"`

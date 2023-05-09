@@ -49,7 +49,7 @@ const Ouch = () => {
       <button
         onClick={(_) => {
           client.whatCouldGoWrong().then(setErr);
-          setErr(undefined);
+          setErr(null);
         }}
       >
         what could go wrong?
