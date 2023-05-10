@@ -1,3 +1,4 @@
+import { DocsAside } from "@/components/DocsAside";
 import { ServiceClient } from "@/services/generated/client-ouch";
 import { AwfulError, BadError, OuchError } from "@/services/generated/vo-ouch";
 import { getClientWithTransportLog } from "@/services/transportWithLog";
@@ -36,7 +37,7 @@ const Ouch = () => {
   const ErrComp = getComponentForErr(err!);
   return (
     <div>
-      <aside>
+      <DocsAside examplePage="ouch">
         This example shows gotsrpc&apos;s union feature for errors
         <ul>
           <li>Every call will result in an error</li>
@@ -45,7 +46,7 @@ const Ouch = () => {
             Use this feature to handle errors from complex underlying domains
           </li>
         </ul>
-      </aside>
+      </DocsAside>
       <button
         onClick={(_) => {
           client.whatCouldGoWrong().then(setErr);

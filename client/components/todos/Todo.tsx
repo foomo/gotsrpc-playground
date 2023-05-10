@@ -11,8 +11,8 @@ export const Todo = (props: {
     const { todo, index } = props;
     return (
       <div className={classes.todo} key={todo.id}>
-        <div>
-          {index + 1} {todo.text} &nbsp;
+        <div className={classes.todoLabel}>
+          {todo.text} &nbsp;
         </div>
         <div>
           {formatDistanceToNow(new Date(todo.created))} &nbsp;

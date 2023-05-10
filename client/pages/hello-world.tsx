@@ -21,7 +21,7 @@ const HelloWorld = () => {
   };
   return (
     <>
-      <DocsAside anchor="hello-world">
+      <DocsAside examplePage="hello-world">
         <p>This example is as simple as it gets:</p>
         <ul>
           <li>there is just one rpc method to call</li>

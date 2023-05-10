@@ -41,7 +41,10 @@ export default function App(props: AppProps) {
                 currentLabel = ne.label;
               }
               return (
-                <li key={ne.page}>
+                <li
+                  key={ne.page}
+                  className={currentPage === ne.page ? "active" : ""}
+                >
                   {currentPage === ne.page ? (
                     <b>{ne.label}</b>
                   ) : (
@@ -52,8 +55,10 @@ export default function App(props: AppProps) {
             })}
           </ul>
         </nav>
-        <h2>{currentLabel}</h2>
-        <Component {...pageProps} />
+        {["/"].indexOf(currentPage) === -1 && <h2>{currentLabel}</h2>}
+        <div className={styles.mainContent}>
+          <Component {...pageProps} />
+        </div>
         {["/", "hello-world"].indexOf(currentPage) === -1 && <TransportLog />}
       </main>
     </>

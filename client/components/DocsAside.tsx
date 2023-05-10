@@ -1,15 +1,20 @@
 export const DocsAside = (
-  props: React.PropsWithChildren<{ anchor?: string }>
+  props: React.PropsWithChildren<{ examplePage?: string }>
 ) => {
   return (
     <aside>
       {props.children}
       <div>
-        {props.anchor && (
+        {props.examplePage && (
           <a
-            href={"https://www.foomo.org/docs/projects/gotsrpc#" + props.anchor}
+            href={
+              "https://www.foomo.org/docs/projects/gotsrpc/playground/" +
+              props.examplePage
+            }
+            style={{ textDecoration: "none", fontSize: "2rem" }}
+            title="documentation"
           >
-            docs
+            📖
           </a>
         )}
       </div>

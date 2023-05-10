@@ -62,7 +62,7 @@ const Todos = () => {
 
   return (
     <>
-      <DocsAside anchor="todos">
+      <DocsAside examplePage="todos">
         This is a simple application, that includes error handling
         <ul>
           <li>

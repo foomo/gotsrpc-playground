@@ -7,16 +7,31 @@ export default function Home() {
     <>
       <h2>Welcome to the gotsrpc playground!</h2>
       <p>
-        gotsrpc{" "}
-        <a href="https://github.com/foomo/gotsrpc">
-          https://github.com/foomo/gotsrpc
-        </a>{" "}
-        is a <A href="https://www.foomo.org" /> project proudly brought to you
-        by the <A href="https://www.bestbytes.com" /> team.
+        gotsrpc and gotsrpc-playground are proudly brought to you by{" "}
+        <a href="https://www.bestbytes.com">bestbytes</a> through{" "}
+        <a href="https://www.foomo.org">https://www.foomo.org</a>.
+      </p>
+      <h3>gotsrpc</h3>
+      <p>
+        github repo:
+        <br />
+        <A href="https://www.foomo.org/foomo/gotsrpc" />
       </p>
       <p>
-        This playground is referenced and documented here{" "}
-        <A href="https://www.foomo.org/docs/projects/gotsrpc" />.
+        documentation:
+        <br />
+        <A href="https://www.foomo.org/docs/projects/gotsrpc" />
+      </p>
+      <h3>gotsrpc playground</h3>
+      <p>
+        github repo:
+        <br />
+        <A href="https://www.foomo.org/foomo/gotsrpc-playground" />
+      </p>
+      <p>
+        playground documentation:
+        <br />
+        <A href="https://www.foomo.org/docs/projects/gotsrpc/playground" />
       </p>
     </>
   );
