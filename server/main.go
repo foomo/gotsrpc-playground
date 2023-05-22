@@ -59,23 +59,23 @@ func main() {
 					lock.Lock()
 					defer lock.Unlock()
 
-			// delegate calls to the respective gotsrpc service proxies
-			switch true {
-			case strings.HasPrefix(r.URL.Path, "/services/ouch"):
-				proxyOuch.ServeHTTP(w, r)
-			case strings.HasPrefix(r.URL.Path, "/services/wof"):
-				proxyWof.ServeHTTP(w, r)
-			case strings.HasPrefix(r.URL.Path, "/services/helloworld"):
-				proxyHelloWorld.ServeHTTP(w, r)
-			case strings.HasPrefix(r.URL.Path, "/services/todos"):
-				// slow down to allow proper state demo on client side
-				time.Sleep(time.Second)
-				proxyTodos.ServeHTTP(w, r)
-			case strings.HasPrefix(r.URL.Path, "/services/playground"):
-				proxyPlayground.ServeHTTP(w, r)
-			default:
-				http.NotFound(w, r)
-			}
+					// delegate calls to the respective gotsrpc service proxies
+					switch true {
+					case strings.HasPrefix(r.URL.Path, "/services/ouch"):
+						proxyOuch.ServeHTTP(w, r)
+					case strings.HasPrefix(r.URL.Path, "/services/wof"):
+						proxyWof.ServeHTTP(w, r)
+					case strings.HasPrefix(r.URL.Path, "/services/helloworld"):
+						proxyHelloWorld.ServeHTTP(w, r)
+					case strings.HasPrefix(r.URL.Path, "/services/todos"):
+						// slow down to allow proper state demo on client side
+						time.Sleep(time.Second)
+						proxyTodos.ServeHTTP(w, r)
+					case strings.HasPrefix(r.URL.Path, "/services/playground"):
+						proxyPlayground.ServeHTTP(w, r)
+					default:
+						http.NotFound(w, r)
+					}
 
 					return
 				}

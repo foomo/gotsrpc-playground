@@ -127,5 +127,5 @@ const transportWithLog =
 export const getClientWithTransportLog = <T>(
   clientClass: ServiceConstructor<T>
 ) => {
-  return new clientClass(transportWithLog(clientClass.defaultEndpoint));
+  return new clientClass(transportWithLog('http://localhost:8080'+clientClass.defaultEndpoint));
 };

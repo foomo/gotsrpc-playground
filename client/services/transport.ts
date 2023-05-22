@@ -1,4 +1,4 @@
-// every project has special needs for their flavour of transport this is a 
+// every project has special needs for their flavour of transport this is a
 // naive vanilla implementation
 const transport =
   (endpoint: string) =>
@@ -25,5 +25,5 @@ export interface ServiceConstructor<ST> extends Function {
 
 // this client for client construction
 export const getClient = <T>(clientClass: ServiceConstructor<T>) => {
-  return new clientClass(transport(clientClass.defaultEndpoint));
+  return new clientClass(transport('http://localhost:8080'+clientClass.defaultEndpoint));
 };
