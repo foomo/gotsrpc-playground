@@ -45,13 +45,18 @@ func main() {
 	// I am taking concurrency out of the equation
 	lock := &sync.Mutex{}
 
-	svr.AddService(keel.NewServiceHTTP(svr.Logger(), "playground", ":8080", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		ll := l.With(zap.String("path", r.URL.Path))
-		if strings.HasPrefix(r.URL.Path, "/services/") {
-			ll.Info("serving a gotsrpc service")
-			// no concurrency
-			lock.Lock()
-			defer lock.Unlock()
+	svr.AddService(
+		keel.NewServiceHTTP(
+			svr.Logger(),
+			"playground",
+			"localhost:8080",
+			http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				ll := l.With(zap.String("path", r.URL.Path))
+				if strings.HasPrefix(r.URL.Path, "/services/") {
+					ll.Info("serving a gotsrpc service")
+					// no concurrency
+					lock.Lock()
+					defer lock.Unlock()
 
 			// delegate calls to the respective gotsrpc service proxies
 			switch true {
