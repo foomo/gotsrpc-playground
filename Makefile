@@ -1,4 +1,7 @@
 
+export LOG_LEVEL=debug
+export LOG_MODE=dev
+
 clean:
 	rm -vf client/services/generated/vo-*.ts client/services/generated/client-*.ts server/services/*/*_gen.go
 
