@@ -17,6 +17,7 @@ import (
 	"github.com/foomo/gotsrpc-playground/server/services/todos"
 	"github.com/foomo/gotsrpc-playground/server/services/wof"
 	"github.com/foomo/keel"
+	"github.com/foomo/keel/net/http/middleware"
 	"go.uber.org/zap"
 )
 
@@ -76,11 +77,15 @@ func main() {
 				http.NotFound(w, r)
 			}
 
-			return
-		}
-		ll.Info("passing request to Next.js backend")
-		revereseProxy.ServeHTTP(w, r)
-	})))
+					return
+				}
+				ll.Info("passing request to Next.js backend")
+				revereseProxy.ServeHTTP(w, r)
+			}),
+			middleware.CORS(middleware.CORSWithAllowOrigins("*")),
+			middleware.Logger(),
+		),
+	)
 	svr.Run()
 }
 
