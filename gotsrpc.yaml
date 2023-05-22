@@ -1,3 +1,4 @@
+# define go module mode
 module:
   name: github.com/foomo/gotsrpc-playground/server
   path: ./server
