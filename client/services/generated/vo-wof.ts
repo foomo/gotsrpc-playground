@@ -13,6 +13,11 @@ export interface Car {
 	seats:github_com_foomo_gotsrpc_playground_server_services_wof.SeatCount;
 	power:number;
 }
+// github.com/foomo/gotsrpc-playground/server/services/wof.LandAnimals
+export enum LandAnimals {
+	Cat = "cat",
+	Dog = "dog",
+}
 // github.com/foomo/gotsrpc-playground/server/services/wof.Pet
 export interface Pet {
 	kind:'Pet';
@@ -28,15 +33,17 @@ export enum SeatCount {
 	TwoSeats = 2,
 }
 // github.com/foomo/gotsrpc-playground/server/services/wof.Species
-export enum Species {
-	Cat = "cat",
-	Dog = "dog",
-	Fish = "fish",
-}
+export const Species = { ...github_com_foomo_gotsrpc_playground_server_services_wof.LandAnimals, ...github_com_foomo_gotsrpc_playground_server_services_wof.WaterAnimals }
+export type Species = github_com_foomo_gotsrpc_playground_server_services_wof.LandAnimals | github_com_foomo_gotsrpc_playground_server_services_wof.WaterAnimals
 // github.com/foomo/gotsrpc-playground/server/services/wof.Trip
 export interface Trip {
 	kind:'Trip';
 	name:string;
 	description:string;
+}
+// github.com/foomo/gotsrpc-playground/server/services/wof.WaterAnimals
+export enum WaterAnimals {
+	Catfish = "catfish",
+	Dogfish = "dogfish",
 }
 // end of common js

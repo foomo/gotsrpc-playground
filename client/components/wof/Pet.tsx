@@ -1,13 +1,15 @@
-import { Pet as PetType, Species } from "@/services/generated/vo-wof";
+import {LandAnimals, Pet as PetType, Species, WaterAnimals} from "@/services/generated/vo-wof";
 
 const getEmoticonForSpecies = (species: Species): string => {
   switch (species) {
-    case Species.Cat:
+    case LandAnimals.Cat:
       return "🐈";
-    case Species.Dog:
+    case LandAnimals.Dog:
       return "🐕";
-    case Species.Fish:
-      return "🐡";
+    case WaterAnimals.Catfish:
+      return "🐈🐡";
+    case WaterAnimals.Dogfish:
+      return "🐕🐡";
     default:
       return "🦕";
   }

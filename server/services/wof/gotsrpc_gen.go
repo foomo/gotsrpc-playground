@@ -12,6 +12,7 @@ import (
 
 func init() {
 	gotsrpc.MustRegisterUnionExt(Price{})
+	gotsrpc.MustRegisterUnionExt(Species{})
 }
 
 const (

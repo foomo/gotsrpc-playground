@@ -44,11 +44,14 @@ func (s *wofService) Spin() wof.Price {
 	case 2:
 		fallthrough
 	default:
+		species := wof.Catfish
 		return wof.Price{
 			Pet: &wof.Pet{
-				Kind:    "Pet",
-				Name:    "James",
-				Species: wof.Cat,
+				Kind: "Pet",
+				Name: "James",
+				Species: wof.Species{
+					WaterAnimals: &species,
+				},
 			},
 		}
 	}

@@ -6,12 +6,23 @@ type Trip struct {
 	Description string `json:"description"`
 }
 
-type Species string
+type (
+	Species struct {
+		LandAnimals  *LandAnimals  `json:"landAnimals,omitempty" gotsrpc:"union"`
+		WaterAnimals *WaterAnimals `json:"waterAnimals,omitempty" gotsrpc:"union"`
+	}
+	LandAnimals  string
+	WaterAnimals string
+)
 
 const (
-	Cat  Species = "cat"
-	Dog  Species = "dog"
-	Fish Species = "fish"
+	Cat LandAnimals = "cat"
+	Dog LandAnimals = "dog"
+)
+
+const (
+	Catfish WaterAnimals = "catfish"
+	Dogfish WaterAnimals = "dogfish"
 )
 
 type Pet struct {
