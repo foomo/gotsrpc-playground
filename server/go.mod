@@ -3,8 +3,8 @@ module github.com/foomo/gotsrpc-playground/server
 go 1.20
 
 require (
-	github.com/foomo/gotsrpc/v2 v2.7.0
-	github.com/foomo/keel v0.14.0
+	github.com/foomo/gotsrpc/v2 v2.7.2
+	github.com/foomo/keel v0.15.0
 	github.com/pkg/errors v0.9.1
 	go.uber.org/zap v1.24.0
 )
