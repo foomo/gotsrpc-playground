@@ -1,6 +1,8 @@
 import {LandAnimals, Pet as PetType, Species, WaterAnimals} from "@/services/generated/vo-wof";
 
-const getEmoticonForSpecies = (species: Species): string => {
+type SpeciesValue = Species[keyof Species];
+
+const getEmoticonForSpecies = (species: SpeciesValue): string => {
   switch (species) {
     case LandAnimals.Cat:
       return "🐈";
@@ -18,9 +20,9 @@ const getEmoticonForSpecies = (species: Species): string => {
 export const Pet = (pet: PetType) => {
   return (
     <>
-      <h3>{getEmoticonForSpecies(pet.species)} {pet.name}</h3>
+      <h3>{getEmoticonForSpecies(pet.species as unknown as SpeciesValue)} {pet.name}</h3>
       <p>
-        Your pet is called {pet.name} and is a {pet.species}.
+        Your pet is called {pet.name} and is a {String(pet.species)}.
       </p>
     </>
   );

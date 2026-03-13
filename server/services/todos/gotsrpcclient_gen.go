@@ -38,42 +38,43 @@ func NewServiceGoTSRPCClientWithClient(url string, endpoint string, client *go_n
 		Client:   gotsrpc.NewClientWithHttpClient(client),
 	}
 }
+
 func (tsc *HTTPServiceGoTSRPCClient) CreateTodo(ctx go_context.Context, text string) (todos Todos, err *Error, clientErr error) {
-	args := []interface{}{text}
-	reply := []interface{}{&todos, &err}
-	clientErr = tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "CreateTodo", args, reply)
-	if clientErr != nil {
-		clientErr = pkg_errors.WithMessage(clientErr, "failed to call todos.ServiceGoTSRPCProxy CreateTodo")
+	rpcArgs := []any{text}
+	rpcReply := []any{&todos, &err}
+	rpcErr := tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "CreateTodo", rpcArgs, rpcReply)
+	if rpcErr != nil {
+		clientErr = pkg_errors.WithMessage(rpcErr, "failed to call todos.ServiceGoTSRPCProxy CreateTodo")
 	}
 	return
 }
 
 func (tsc *HTTPServiceGoTSRPCClient) DeleteTodo(ctx go_context.Context, ID TodoID) (todos Todos, err *Error, clientErr error) {
-	args := []interface{}{ID}
-	reply := []interface{}{&todos, &err}
-	clientErr = tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "DeleteTodo", args, reply)
-	if clientErr != nil {
-		clientErr = pkg_errors.WithMessage(clientErr, "failed to call todos.ServiceGoTSRPCProxy DeleteTodo")
+	rpcArgs := []any{ID}
+	rpcReply := []any{&todos, &err}
+	rpcErr := tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "DeleteTodo", rpcArgs, rpcReply)
+	if rpcErr != nil {
+		clientErr = pkg_errors.WithMessage(rpcErr, "failed to call todos.ServiceGoTSRPCProxy DeleteTodo")
 	}
 	return
 }
 
 func (tsc *HTTPServiceGoTSRPCClient) GetTodos(ctx go_context.Context) (todos Todos, err *Error, clientErr error) {
-	args := []interface{}{}
-	reply := []interface{}{&todos, &err}
-	clientErr = tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "GetTodos", args, reply)
-	if clientErr != nil {
-		clientErr = pkg_errors.WithMessage(clientErr, "failed to call todos.ServiceGoTSRPCProxy GetTodos")
+	rpcArgs := []any{}
+	rpcReply := []any{&todos, &err}
+	rpcErr := tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "GetTodos", rpcArgs, rpcReply)
+	if rpcErr != nil {
+		clientErr = pkg_errors.WithMessage(rpcErr, "failed to call todos.ServiceGoTSRPCProxy GetTodos")
 	}
 	return
 }
 
 func (tsc *HTTPServiceGoTSRPCClient) SetComplete(ctx go_context.Context, ID TodoID, complete bool) (todos Todos, err *Error, clientErr error) {
-	args := []interface{}{ID, complete}
-	reply := []interface{}{&todos, &err}
-	clientErr = tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "SetComplete", args, reply)
-	if clientErr != nil {
-		clientErr = pkg_errors.WithMessage(clientErr, "failed to call todos.ServiceGoTSRPCProxy SetComplete")
+	rpcArgs := []any{ID, complete}
+	rpcReply := []any{&todos, &err}
+	rpcErr := tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "SetComplete", rpcArgs, rpcReply)
+	if rpcErr != nil {
+		clientErr = pkg_errors.WithMessage(rpcErr, "failed to call todos.ServiceGoTSRPCProxy SetComplete")
 	}
 	return
 }

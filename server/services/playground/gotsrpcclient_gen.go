@@ -35,12 +35,13 @@ func NewServiceGoTSRPCClientWithClient(url string, endpoint string, client *go_n
 		Client:   gotsrpc.NewClientWithHttpClient(client),
 	}
 }
+
 func (tsc *HTTPServiceGoTSRPCClient) ImplementMe(ctx go_context.Context) (retImplementMe_0 Greeting, clientErr error) {
-	args := []interface{}{}
-	reply := []interface{}{&retImplementMe_0}
-	clientErr = tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "ImplementMe", args, reply)
-	if clientErr != nil {
-		clientErr = pkg_errors.WithMessage(clientErr, "failed to call playground.ServiceGoTSRPCProxy ImplementMe")
+	rpcArgs := []any{}
+	rpcReply := []any{&retImplementMe_0}
+	rpcErr := tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "ImplementMe", rpcArgs, rpcReply)
+	if rpcErr != nil {
+		clientErr = pkg_errors.WithMessage(rpcErr, "failed to call playground.ServiceGoTSRPCProxy ImplementMe")
 	}
 	return
 }

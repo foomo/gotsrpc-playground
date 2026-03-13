@@ -1,0 +1,32 @@
+[tools]
+go = "1.26"
+node = "24"
+"npm:yarn" = "1"
+
+[env]
+LOG_LEVEL = "debug"
+LOG_MODE = "dev"
+
+[tasks.clean]
+description = "Remove all generated files"
+run = "rm -vf client/services/generated/vo-*.ts client/services/generated/client-*.ts server/services/*/*_gen.go"
+
+[tasks.gotsrpc]
+description = "Regenerate all TypeScript clients and Go handlers"
+depends = ["clean"]
+run = "gotsrpc gotsrpc.yaml"
+
+[tasks."run-client"]
+description = "Run Next.js dev server"
+dir = "{{config_root}}/client"
+run = "yarn install && yarn dev"
+
+[tasks."run-server"]
+description = "Run Go server"
+dir = "{{config_root}}/server"
+run = "go run main.go"
+
+[tasks.run-playground]
+description = "Run both server and client in parallel"
+depends = ["run-server", "run-client"]
+run = "echo 'running server and client'"

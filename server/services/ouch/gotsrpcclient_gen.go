@@ -35,12 +35,13 @@ func NewServiceGoTSRPCClientWithClient(url string, endpoint string, client *go_n
 		Client:   gotsrpc.NewClientWithHttpClient(client),
 	}
 }
+
 func (tsc *HTTPServiceGoTSRPCClient) WhatCouldGoWrong(ctx go_context.Context) (retWhatCouldGoWrong_0 *OuchError, clientErr error) {
-	args := []interface{}{}
-	reply := []interface{}{&retWhatCouldGoWrong_0}
-	clientErr = tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "WhatCouldGoWrong", args, reply)
-	if clientErr != nil {
-		clientErr = pkg_errors.WithMessage(clientErr, "failed to call ouch.ServiceGoTSRPCProxy WhatCouldGoWrong")
+	rpcArgs := []any{}
+	rpcReply := []any{&retWhatCouldGoWrong_0}
+	rpcErr := tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "WhatCouldGoWrong", rpcArgs, rpcReply)
+	if rpcErr != nil {
+		clientErr = pkg_errors.WithMessage(rpcErr, "failed to call ouch.ServiceGoTSRPCProxy WhatCouldGoWrong")
 	}
 	return
 }

@@ -4,7 +4,7 @@ import { TransportError } from "@/components/TransportError";
 import { TodoError } from "@/components/todos/TodoError";
 import { TodoList } from "@/components/todos/TodoList";
 import { ServiceClient } from "@/services/generated/client-todos";
-import { Error, TodoID, Todos } from "@/services/generated/vo-todos";
+import { type Error, type TodoID, type Todos } from "@/services/generated/vo-todos";
 import { getClientWithTransportLog } from "@/services/transportWithLog";
 
 import { useEffect, useState } from "react";

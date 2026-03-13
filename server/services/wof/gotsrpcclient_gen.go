@@ -35,12 +35,13 @@ func NewServiceGoTSRPCClientWithClient(url string, endpoint string, client *go_n
 		Client:   gotsrpc.NewClientWithHttpClient(client),
 	}
 }
+
 func (tsc *HTTPServiceGoTSRPCClient) Spin(ctx go_context.Context) (retSpin_0 Price, clientErr error) {
-	args := []interface{}{}
-	reply := []interface{}{&retSpin_0}
-	clientErr = tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "Spin", args, reply)
-	if clientErr != nil {
-		clientErr = pkg_errors.WithMessage(clientErr, "failed to call wof.ServiceGoTSRPCProxy Spin")
+	rpcArgs := []any{}
+	rpcReply := []any{&retSpin_0}
+	rpcErr := tsc.Client.Call(ctx, tsc.URL, tsc.EndPoint, "Spin", rpcArgs, rpcReply)
+	if rpcErr != nil {
+		clientErr = pkg_errors.WithMessage(rpcErr, "failed to call wof.ServiceGoTSRPCProxy Spin")
 	}
 	return
 }

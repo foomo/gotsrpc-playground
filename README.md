@@ -14,7 +14,7 @@ If you want to run the server untouched and want to play around with the fronten
 
 ```shell
 # will run client and server
-make run
+mise run run-playground
 ```
 
 ### run to play with client and server
@@ -24,17 +24,17 @@ Open first terminal to run the client:
 ```shell
 # will run client only - client is hot reloading and does not need to be
 # restarted as it runs yarn dev and all of it's Next.js magic
-make run-client
+mise run run-client
 ```
 
 Open a second terminal to iterate on the server:
 
 ```shell
 # 1 run gotsrpc and regenerate gode
-make gotsrpc
+gotsrpc gotsrpc.yaml
 
 # 2 will run server only
-make run-server
+mise run run-server
 
 # change code
 # goto 1

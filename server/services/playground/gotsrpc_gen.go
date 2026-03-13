@@ -48,13 +48,13 @@ func (p *ServiceGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	switch funcName {
 	case ServiceGoTSRPCProxyImplementMe:
 		var (
-			args []interface{}
-			rets []interface{}
+			args []any
+			rets []any
 		)
 		executionStart := time.Now()
 		implementMeRet := p.service.ImplementMe()
 		callStats.Execution = time.Since(executionStart)
-		rets = []interface{}{implementMeRet}
+		rets = []any{implementMeRet}
 		if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
 			gotsrpc.ErrorCouldNotReply(w)
 			return

@@ -18,6 +18,7 @@ import (
 	"github.com/foomo/gotsrpc-playground/server/services/wof"
 	"github.com/foomo/keel"
 	"github.com/foomo/keel/net/http/middleware"
+	"github.com/foomo/keel/service"
 	"go.uber.org/zap"
 )
 
@@ -47,7 +48,7 @@ func main() {
 	lock := &sync.Mutex{}
 
 	svr.AddService(
-		keel.NewServiceHTTP(
+		service.NewHTTP(
 			svr.Logger(),
 			"playground",
 			"localhost:8080",

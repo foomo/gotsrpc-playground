@@ -51,13 +51,13 @@ func (p *ServiceGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	switch funcName {
 	case ServiceGoTSRPCProxyCreateTodo:
 		var (
-			args []interface{}
-			rets []interface{}
+			args []any
+			rets []any
 		)
 		var (
 			arg_text string
 		)
-		args = []interface{}{&arg_text}
+		args = []any{&arg_text}
 		if err := gotsrpc.LoadArgs(&args, callStats, r); err != nil {
 			gotsrpc.ErrorCouldNotLoadArgs(w)
 			return
@@ -65,7 +65,7 @@ func (p *ServiceGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 		executionStart := time.Now()
 		createTodoTodos, createTodoErr := p.service.CreateTodo(arg_text)
 		callStats.Execution = time.Since(executionStart)
-		rets = []interface{}{createTodoTodos, createTodoErr}
+		rets = []any{createTodoTodos, createTodoErr}
 		if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
 			gotsrpc.ErrorCouldNotReply(w)
 			return
@@ -74,13 +74,13 @@ func (p *ServiceGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 		return
 	case ServiceGoTSRPCProxyDeleteTodo:
 		var (
-			args []interface{}
-			rets []interface{}
+			args []any
+			rets []any
 		)
 		var (
 			arg_ID TodoID
 		)
-		args = []interface{}{&arg_ID}
+		args = []any{&arg_ID}
 		if err := gotsrpc.LoadArgs(&args, callStats, r); err != nil {
 			gotsrpc.ErrorCouldNotLoadArgs(w)
 			return
@@ -88,7 +88,7 @@ func (p *ServiceGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 		executionStart := time.Now()
 		deleteTodoTodos, deleteTodoErr := p.service.DeleteTodo(arg_ID)
 		callStats.Execution = time.Since(executionStart)
-		rets = []interface{}{deleteTodoTodos, deleteTodoErr}
+		rets = []any{deleteTodoTodos, deleteTodoErr}
 		if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
 			gotsrpc.ErrorCouldNotReply(w)
 			return
@@ -97,13 +97,13 @@ func (p *ServiceGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 		return
 	case ServiceGoTSRPCProxyGetTodos:
 		var (
-			args []interface{}
-			rets []interface{}
+			args []any
+			rets []any
 		)
 		executionStart := time.Now()
 		getTodosTodos, getTodosErr := p.service.GetTodos()
 		callStats.Execution = time.Since(executionStart)
-		rets = []interface{}{getTodosTodos, getTodosErr}
+		rets = []any{getTodosTodos, getTodosErr}
 		if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
 			gotsrpc.ErrorCouldNotReply(w)
 			return
@@ -112,14 +112,14 @@ func (p *ServiceGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 		return
 	case ServiceGoTSRPCProxySetComplete:
 		var (
-			args []interface{}
-			rets []interface{}
+			args []any
+			rets []any
 		)
 		var (
 			arg_ID       TodoID
 			arg_complete bool
 		)
-		args = []interface{}{&arg_ID, &arg_complete}
+		args = []any{&arg_ID, &arg_complete}
 		if err := gotsrpc.LoadArgs(&args, callStats, r); err != nil {
 			gotsrpc.ErrorCouldNotLoadArgs(w)
 			return
@@ -127,7 +127,7 @@ func (p *ServiceGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 		executionStart := time.Now()
 		setCompleteTodos, setCompleteErr := p.service.SetComplete(arg_ID, arg_complete)
 		callStats.Execution = time.Since(executionStart)
-		rets = []interface{}{setCompleteTodos, setCompleteErr}
+		rets = []any{setCompleteTodos, setCompleteErr}
 		if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
 			gotsrpc.ErrorCouldNotReply(w)
 			return
