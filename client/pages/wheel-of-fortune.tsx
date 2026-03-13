@@ -8,22 +8,16 @@ import { useState } from "react";
 import { Price } from "@/services/generated/vo-wof";
 import { getClientWithTransportLog, useTransportLogStore } from "@/services/transportWithLog";
 
-const NoPriceComp = () => {
-  return <div>No Price</div>;
-};
-
-const getComponentForPrice = (
-  price?: Price
-): React.FunctionComponent<Price> => {
+const PriceDisplay = ({ price }: { price: Price }) => {
   switch (price?.kind) {
     case "Car":
-      return Car as React.FunctionComponent<Price>;
+      return <Car {...price} />;
     case "Trip":
-      return Trip as React.FunctionComponent<Price>;
+      return <Trip {...price} />;
     case "Pet":
-      return Pet as React.FunctionComponent<Price>;
+      return <Pet {...price} />;
     default:
-      return NoPriceComp;
+      return <div>No Price</div>;
   }
 };
 
@@ -35,8 +29,6 @@ const WheelOfFortune = () => {
   );
 
   const [price, setPrice] = useState<Price>(undefined);
-
-  const PriceComp = getComponentForPrice(price);
 
   return (
     <div>
@@ -53,7 +45,7 @@ const WheelOfFortune = () => {
       {price && (
         <div className={classes.price}>
           Your price is a ({price.kind})
-          <PriceComp {...price} />
+          <PriceDisplay price={price} />
         </div>
       )}
     </div>

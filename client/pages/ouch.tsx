@@ -13,17 +13,12 @@ const BadErrorComp = (err: BadError) => {
   return <div className={classes.errorBad}>BAD ERROR - cause: {err.cause}</div>;
 };
 
-const getComponentForErr = (
-  err?: OuchError
-): React.FunctionComponent<OuchError> | null => {
-  if (!err) {
-    return null;
-  }
-  switch (err?.kind) {
+const ErrDisplay = ({ err }: { err: NonNullable<OuchError> }) => {
+  switch (err.kind) {
     case "AwfulError":
-      return AwfulErrorComp as React.FunctionComponent<OuchError>;
+      return <AwfulErrorComp {...err} />;
     case "BadError":
-      return BadErrorComp as React.FunctionComponent<OuchError>;
+      return <BadErrorComp {...err} />;
     default:
       return null;
   }
@@ -34,7 +29,6 @@ const client = getClientWithTransportLog(ServiceClient);
 const Ouch = () => {
   const [err, setErr] = useState<OuchError | null>(null);
 
-  const ErrComp = getComponentForErr(err!);
   return (
     <div>
       <DocsAside examplePage="ouch">
@@ -55,7 +49,7 @@ const Ouch = () => {
       >
         what could go wrong?
       </button>
-      {err && ErrComp && <ErrComp {...err} />}
+      {err && <ErrDisplay err={err} />}
     </div>
   );
 };

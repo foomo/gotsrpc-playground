@@ -57,7 +57,17 @@ const Todos = () => {
 
   // initial load of todos
   useEffect(() => {
-    handleTodoClientPromise(client.getTodos());
+    client
+      .getTodos()
+      .then((value: TodoReturnType) => {
+        setError(value.err);
+        setTodos(value.todos);
+      })
+      .catch((e: any) => {
+        setTransportError(
+          "a transport error occurred - please reload the page: " + e
+        );
+      });
   }, []);
 
   return (
